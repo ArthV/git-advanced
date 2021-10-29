@@ -117,6 +117,47 @@ def bsgs(g, h, p):
     # Solution not found
     return None
 
+def rshor(a, P):
+    """recherche de la période r de la fonction f=pow(a,k,P)"""
+ 
+    # calcul des premières valeurs de f(a,k,P) avec k de 1 à imax-1:
+    M = [1] # car on sait que pow(a,0,P) = 1
+    imax = 10000  # taille du motif de départ M
+    for k in xrange(1, imax):
+        f = pow(a, k, P)
+        if f == 1:
+            return k # on a trouvé la période r=k
+        M.append(f)
+ 
+    # définir un pas
+    pas = (P-imax)//100000
+    if pas<1:
+        pas = 1
+ 
+    k = imax
+    while k<P:
+        f = pow(a, k, P) # on calcule la valeur de f correspondante
+        i = -1
+        while True:
+            try:
+                i = M.index(f,i+1) # on cherche si f(k) se trouve dans le motif de départ
+            except:
+                break  # non, on passe au k suivant
+ 
+            if pow(a,k-i,P)==1:
+                r = k-i  # on a trouvé la période ou un multiple de la période
+ 
+                # tentative de trouver un r plus petit si c'est un multiple de la période
+                for j in xrange(10, 1, -1):
+                    if r%j==0:
+                        k = r//j
+                        if pow(a,k,P)==1:
+                            return k
+ 
+                return r
+        k += pas
+    return 0  # c'est une condition d'échec: on n'a pas trouvé de r qui convienne
+
 if __name__ == "__main__":
     client_id = ''
     client_secret = ''
