@@ -71,36 +71,7 @@ git merge -X theirs merge-branch
 
 then look at the file.
 
-
-## 2/ Complexe rebase through multiple branches
-
-move to the branch bug fix 
-```
-git checkout bug-fix
-```
-
-and use the command to display the git history 
-
-Then use this command to rebase the bug-fix onto master
-```
-git rebase --onto master dev bug-fix
-```
-
-have a look again at you git history to understand what happened
-
-## 3/ Cherry pick a useful commit 
-
-```
-git checkout dev
-```
-
-Now wwe want to apply our bug fix commit to our dev branch, then will find the sha of the commit using git log and cherry-pick it to the dev branch using the new command
-
-```
-git cherry-pick #replace-commit-sha
-```
-
-## 4/ Bisect with a script 
+## 2/ Bisect with a script 
 
 Go to the bisect-branch
 ```
@@ -127,3 +98,33 @@ Run the command and see what happened ;)
 ```
 git bisect run python manage.py test
 ```
+
+## 3/ Complexe rebase through multiple branches
+
+move to the branch bug fix 
+```
+git checkout bug-fix
+```
+
+and use the command to display the git history 
+
+Then use this command to rebase the bug-fix onto master
+```
+git rebase --onto master dev bug-fix
+```
+
+have a look again at you git history to understand what happened
+
+## 4/ Cherry pick a useful commit 
+
+```
+git checkout dev
+```
+
+Now wwe want to apply our bug fix commit to our dev branch, then will find the sha of the commit using git log and cherry-pick it to the dev branch using the new command
+
+```
+git cherry-pick #replace-commit-sha
+```
+
+
