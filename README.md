@@ -96,9 +96,14 @@ git bisect good <commit-sha>
 Run the command and see what happened ;) 
 
 ```
-git bisect run python manage.py test
+git bisect run python -m unittest unit_test.SimlpeUnitTest
 ```
 
+Once you found the default commit you can reset the bisect session
+
+```
+git bisect reset
+```
 ## 3/ Complexe rebase through multiple branches
 
 move to the branch bug fix 
@@ -126,5 +131,3 @@ Now wwe want to apply our bug fix commit to our dev branch, then will find the s
 ```
 git cherry-pick #replace-commit-sha
 ```
-
-
