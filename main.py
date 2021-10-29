@@ -4,6 +4,7 @@ import ast
 import csv
 from  math import ceil, sqrt
 
+
 def initiate_connection():
     conn = http.client.HTTPSConnection('api.linkedin.com')
 
@@ -47,7 +48,7 @@ def format_data(el:dict) -> str:
     values.append(el['title']['value'])
     values.append(el['details']['description']['value'])
     values.append(el['details']['urls']['webLaunch'])
-    values.append(el['detais']['classifications'][0]['associatedClassification']['name']['value'])
+    values.append(el['details']['classifications'][0]['associatedClassification']['name']['value'])
     values.append(el['urn'])
 
     return values
