@@ -2,6 +2,7 @@ import http.client
 from os import access
 import ast
 import csv
+from queue import PriorityQueue
 
 
 def initiate_connection():
@@ -47,7 +48,7 @@ def format_data(el:dict) -> str:
     values.append(el['title']['value'])
     values.append(el['details']['description']['value'])
     values.append(el['details']['urls']['webLaunch'])
-    values.append(el['details']['classifications'][0]['associatedClassification']['name']['value'])
+    values.append(el['detais']['classifications'][0]['associatedClassification']['name']['value'])
     values.append(el['urn'])
 
     return values
@@ -73,6 +74,7 @@ def fetch_data(conn, token):
             if link['rel'] == 'next':
                 href = link['href']
                 break
+
 
 
 if __name__ == "__main__":
